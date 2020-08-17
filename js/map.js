@@ -1,3 +1,5 @@
+//                          ГЕНЕРАЦИЯ ПИНОВ
+
 var hotelsAvatars = [];
 for(var i = 1; i < 9; i++){
     if(i < 10){
@@ -73,7 +75,6 @@ for(var i = 0; i < hotelsAvatars.length; i++){
 
 
 var map = document.querySelector('.map')
-map.classList.remove('map--faded');
 var mapPinTemplate = document.querySelector('#map-card-template').content.querySelector('.map__pin');
 var mapCardTemplate = document.querySelector('#map-card-template').content.querySelector('.map__card');
 var mapPins = document.querySelector('.map__pins')
@@ -159,4 +160,83 @@ function createCardImg(template, image){
 
 
 
-mapPins.after(createMapCard(mapCardTemplate ,hotels[0]));
+//mapPins.after(createMapCard(mapCardTemplate ,hotels[0]));
+
+//                                  АКТИВАЦИЯ СТРАНИЦЫ
+
+var form = document.querySelector('.notice__form');
+var formInputs = form.querySelector('fieldset');
+
+
+for(var i = 0; i < formInputs.length; i++){
+    formInputs[i].setAttribute('disabled', 'disabled');
+}
+
+// активация страницы
+
+var mainPin = document.querySelector('.map__pin--main');
+var adressInput = document.querySelector('#address');
+
+const MAIN_PIN_WIDTH = mainPin.offsetWidth;
+const MAIN_PIN_HEIGHT =  mainPin.offsetHeight;
+const MAP_WIDTH = map.offsetWidth;
+const MAP_HEIGHT = map.offsetHeight;
+
+var onMainPinMouseup = function(){
+    map.classList.remove('map--faded');
+    form.classList.remove('notice__form--disabled')
+
+
+    for(var i = 0; i< formInputs.length; i++){
+        formInputs[i].removeAttribute('disabled');
+    }
+
+    fillAdress();
+}
+
+mainPin.addEventListener('mouseup', onMainPinMouseup);
+
+//Заполнить адрес
+var fillAdress = function(){
+
+    var totalX = MAP_WIDTH/2 + MAIN_PIN_WIDTH/2;
+    var totalY = MAP_HEIGHT/2 + MAIN_PIN_HEIGHT/2;
+
+    adressInput.value = totalX + ', ' + totalY;
+}
+
+//Показать подробную информацию при нажатии пина
+var mapPinButtons = document.querySelectorAll('.map__pin:not(.map__pin--main)');
+
+
+var onPinClick = function (pin) {
+    var pinImg = pin.querySelector('img').getAttribute('src');
+
+    deletePinCard();
+
+    for(var i = 0; i< hotels.length; i++){
+    //    console.log(i);
+        if(pinImg === hotels[i].author.avatar){
+            mapPins.after(createMapCard(mapCardTemplate ,hotels[i]));
+        }
+    }    
+}
+
+var deletePinCard = function () {
+
+    var mapCard = map.querySelector('.map__card');
+    
+    if(mapCard != null){
+        mapCard.remove();
+    }
+    
+}
+
+for(let i = 0; i< mapPinButtons.length; i++){
+    mapPinButtons[i].addEventListener('click', function(evt) {
+        evt.preventDefault();
+        onPinClick(evt.currentTarget);
+    } )
+}
+
+
