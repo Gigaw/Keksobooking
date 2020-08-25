@@ -574,7 +574,7 @@ textarea:focus {
 
 .notice__form input[type=file] {
   position: absolute;
-  left: -900em;
+  appearance: hidden;
 }
 
 .notice__form .upload {
