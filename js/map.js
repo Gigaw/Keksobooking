@@ -29,20 +29,14 @@ window.map = (function () {
         map.classList.remove('map--faded');
         form.classList.remove('notice__form--disabled')
     
-    
         for(var i = 0; i< formFieldsets.length; i++){
             formFieldsets[i].removeAttribute('disabled');
         }
         
-        
-        fillAdress();
-    
         for(let i = 0; i< mapPinButtons.length; i++){
-            console.log('b');
             mapPinButtons[i].addEventListener('click', function(evt) {
                 evt.preventDefault();
                 onPinClick(evt.currentTarget);
-                console.log('b');
             } )
         }
     }
@@ -85,8 +79,16 @@ window.map = (function () {
         
     }
 
+    fillAdress();
+
     return {
+        // fillAdress: function(){
+    
+        //     var totalX = MAP_WIDTH/2 + MAIN_PIN_WIDTH/2;
+        //     var totalY = MAP_HEIGHT/2 + MAIN_PIN_HEIGHT/2;
         
+        //     adressInput.value = totalX + ', ' + totalY;
+        // }
     }
 }())
 
