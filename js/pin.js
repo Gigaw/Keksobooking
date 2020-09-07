@@ -4,7 +4,7 @@ window.pin = (function(){
     
     
     var fragment = document.createDocumentFragment();
-    var hotels = window.data.hotels;
+    // var hotels = window.data.hotels;
 
     //Создание пина на карте
     function createMapPin( mapPin, information){
@@ -21,17 +21,18 @@ window.pin = (function(){
         return pin;
     }
 
-    //Добавление понов в разметку
-    for( var i = 0; i < hotels.length; i++ ){
 
-        fragment.appendChild(createMapPin(mapPinTemplate, hotels[i]));
-
+    function makePins(information){//Добавление пинов в разметку
+        for( var i = 0; i < information.length; i++ ){
+            fragment.appendChild(createMapPin(mapPinTemplate, information[i]));
+        }
+        map.appendChild(fragment);
     }
 
-    map.appendChild(fragment);
-
-    return{
-        
+    var onError = function(message){
+        console.error(message);
     }
 
+    window.backend.load(makePins, onError);    
+    
 }())

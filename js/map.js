@@ -13,8 +13,6 @@ window.map = (function () {
     var mapPins = document.querySelector('.map__pins');
     var mapCardTemplate = document.querySelector('#map-card-template').content.querySelector('.map__card');
 
-    
-
     const MAIN_PIN_WIDTH = mainPin.offsetWidth;
     const MAIN_PIN_HEIGHT =  mainPin.offsetHeight;
     const MAP_WIDTH = map.offsetWidth;

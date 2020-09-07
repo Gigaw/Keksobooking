@@ -77,6 +77,7 @@ window.data = (function () {
         hotelsArr.push(hotel);
     }
 
+
     
 
     return {
