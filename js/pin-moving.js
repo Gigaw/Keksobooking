@@ -6,7 +6,7 @@
     var map = document.querySelector('.map');
     var form = document.querySelector('.notice__form');
     var formFieldsets = form.querySelectorAll('fieldset');
-    console.log(mainPin)
+    // console.log(mainPin)
     
     mainPinImg.addEventListener('mousedown', function (evt) {
         evt.preventDefault();

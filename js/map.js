@@ -9,7 +9,7 @@ window.map = (function () {
     var form = document.querySelector('.notice__form');
     var formFieldsets = form.querySelectorAll('fieldset');
     var mapPinButtons = document.querySelectorAll('.map__pin:not(.map__pin--main)');
-    var hotels = window.data.hotels;
+    // var hotels = window.data.hotels;
     var mapPins = document.querySelector('.map__pins');
     var mapCardTemplate = document.querySelector('#map-card-template').content.querySelector('.map__card');
 

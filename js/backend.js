@@ -27,7 +27,7 @@
                         error = 'Статус ответа :: ' + xhr.status + ' ' + xhr.statusText;
                 }   
 
-                console.log(xhr.response);
+                // console.log(xhr.response);
             })
 
             xhr.addEventListener('error', function(){
@@ -41,7 +41,7 @@
             xhr.open('GET', URL, true);
             xhr.send();
 
-            console.log(xhr);
+            // console.log(xhr);
         },
         
         onError : function(message){
